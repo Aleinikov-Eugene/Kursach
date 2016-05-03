@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2016.04.05 22:21:50.084,=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2016.04.05 22:21:50.101,=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
-    <Transaction>2016.04.05 23:18:45.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.h=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.h</Transaction>
-    <Transaction>2016.04.05 23:18:45.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.cpp=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
-    <Transaction>2016.04.05 23:18:45.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.dfm=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
-    <Transaction>2016.04.05 23:18:54.130,D:\Учеба\2 семестр\Программирование\Курсач\25\Project1PCH1.h=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2016.04.05 23:18:54.987,D:\Учеба\2 семестр\Программирование\Курсач\25\Project1.cbproj=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.h=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.084,=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.602,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.dfm=D:\Учеба\2 семестр\Программирование\Курсач\25\clock.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.602,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.cpp=D:\Учеба\2 семестр\Программирование\Курсач\25\clock.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.cpp=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.602,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.h=D:\Учеба\2 семестр\Программирование\Курсач\25\clock.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.953,D:\Учеба\2 семестр\Программирование\Курсач\25\Unit3.dfm=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.101,=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.130,D:\Учеба\2 семестр\Программирование\Курсач\25\Project1PCH1.h=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.987,D:\Учеба\2 семестр\Программирование\Курсач\25\Project1.cbproj=C:\Users\Игорь\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2016.05.03 22:31:18.618,=D:\Учеба\2 семестр\Программирование\Курсач\25\Unit1.cpp</Transaction>
+    <Transaction>2016.05.03 22:32:20.024,D:\Учеба\2 семестр\Программирование\Курсач\25\alarm.dfm=D:\Учеба\2 семестр\Программирование\Курсач\25\Unit1.dfm</Transaction>
+    <Transaction>2016.05.03 22:32:20.024,D:\Учеба\2 семестр\Программирование\Курсач\25\alarm.h=D:\Учеба\2 семестр\Программирование\Курсач\25\Unit1.h</Transaction>
+    <Transaction>2016.05.03 22:32:20.024,D:\Учеба\2 семестр\Программирование\Курсач\25\alarm.cpp=D:\Учеба\2 семестр\Программирование\Курсач\25\Unit1.cpp</Transaction>
   </Transactions>
 </BorlandProject>
