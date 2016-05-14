@@ -5,6 +5,7 @@
 
 #include "clock.h"
 #include "alarm.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -19,6 +20,7 @@ int hour,minute,second;
 int r,str;
 int mode = 0;
 bool check_mode = false;
+int f;
 //---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
@@ -261,6 +263,7 @@ void __fastcall TForm3::N9Click(TObject *Sender)
 
 void __fastcall TForm3::N3Click(TObject *Sender)
 {
+    weather();
 	ShowMessage("Функция в разработке! Если у вас есть какие-то идеи, наш адрес zheniasenno@gmail.com! Сделаем проект Лучше вместе!");
 }
 //---------------------------------------------------------------------------
@@ -277,5 +280,63 @@ void __fastcall TForm3::Stn21Click(TObject *Sender)
 	str = 1;
 }
 //---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::weather(void)
+{
+    int outf;
+    AnsiString st,strcopy;
+	if (FileExists("meteo.txt")) {
+		f = FileOpen("meteo.txt",fmOpenWrite);
+	}
+	else
+	  f = FileCreate("meteo.txt");
+	if (f != -1) {
+		st = IdHTTP1->Get("http://api.pogoda.com/index.php?api_lang=ru&localidad=13096&affiliate_id=as7tojk239lm");
+		FileSeek(f,0,0);
+		FileWrite(f,st.c_str(),st.Length());
+		FileClose(f);
+		if (FileExists("out.txt")) {
+			outf = FileOpen("out.txt",fmOpenWrite);
+		}
+		else
+			outf = FileCreate("out.txt");
+		for (int i = 0; i < 14; i++) {
+			st = st.SubString(st.Pos("forecast")+34,st.Length());
+			strcopy += st.SubString(0,st.Pos('"')-1);
+			strcopy +="\n";
+		}
+		for	(int i = 0; i<7 ;i++){
+			st = st.SubString(st.Pos("forecast")+8,st.Length());
+		}
+		for(int i =0;i<7;i++){
+			st = st.SubString(st.Pos("forecast")+49,st.Length());
+            strcopy += st.SubString(0,st.Pos('"')-1);
+			strcopy +="\n";
+		}
+
+		for	(int i = 0; i<7 ;i++){
+			st = st.SubString(st.Pos("forecast")+8,st.Length());
+		}
+
+		for (int i = 0;i< 7; i++) {
+			st = st.SubString(st.Pos("forecast")+34,st.Length());
+			strcopy += st.SubString(0,st.Pos('"')-1);
+			strcopy +="\n";
+		}
+
+		FileSeek(outf,0,0);
+       // FileClear(outf);
+		FileWrite(outf,strcopy.c_str(),strcopy.Length());
+        FileClose(outf);
+	}
+
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
 
 

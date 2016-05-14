@@ -27,7 +27,7 @@ __published:	// IDE-managed Components
 	TUpDown *UpDown1;
 	TUpDown *UpDown2;
 	TTimer *Timer1;
-	TMediaPlayer *MediaPlayer1;
+ //	TMediaPlayer *MediaPlayer1;
 	void __fastcall UpDown2Click(TObject *Sender, TUDBtnType Button);
 	void __fastcall UpDown1Click(TObject *Sender, TUDBtnType Button);
 	void __fastcall Button1Click(TObject *Sender);

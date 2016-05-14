@@ -47,7 +47,7 @@ object Form1: TForm1
       object Label2: TLabel
         Left = 37
         Top = 18
-        Width = 22
+        Width = 5
         Height = 16
         Caption = ':'
         Font.Charset = DEFAULT_CHARSET
@@ -136,20 +136,6 @@ object Form1: TForm1
     Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1100
     TabOrder = 1
     OnClick = Button1Click
-  end
-  object MediaPlayer1: TMediaPlayer
-    Left = 360
-    Top = 160
-    Width = 57
-    Height = 30
-    ColoredButtons = [btPlay, btStop]
-    EnabledButtons = [btPlay, btStop]
-    VisibleButtons = [btPlay, btStop]
-    DoubleBuffered = True
-    Display = MediaPlayer1
-    Visible = False
-    ParentDoubleBuffered = False
-    TabOrder = 2
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer

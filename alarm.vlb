@@ -10,10 +10,6 @@ Coordinates=333,10,53,58
 [Panel3]
 Coordinates=73,78,55,58
 
-[MediaPlayer1]
-Coordinates=10,146,93,36
-Visible=True
-
 [Panel1]
 Coordinates=201,78,55,58
 
@@ -42,5 +38,6 @@ Coordinates=266,78,71,36
 Coordinates=138,78,53,58
 
 []
-Coordinates=262,155,91,36
+Coordinates=10,146,93,36
+Visible=True
 
