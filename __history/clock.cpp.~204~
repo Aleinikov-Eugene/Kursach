@@ -18,6 +18,7 @@ TForm3 *Form3;
 int x0,y0;
 int hour,minute,second;
 int r,str;
+AnsiString weather_s[28];
 int mode = 0;
 bool check_mode = false;
 int f;
@@ -263,8 +264,11 @@ void __fastcall TForm3::N9Click(TObject *Sender)
 
 void __fastcall TForm3::N3Click(TObject *Sender)
 {
+	AnsiString s;
     weather();
-	ShowMessage("Функция в разработке! Если у вас есть какие-то идеи, наш адрес zheniasenno@gmail.com! Сделаем проект Лучше вместе!");
+	s = "Температура : Мин "+weather_s[0]+"Мах "+weather_s[7]+"\nПиктограмма:"+weather_s[14]+"\n еще какая то хрень: "+weather_s[21];
+	ShowMessage(s);
+	//ShowMessage("Функция в разработке! Если у вас есть какие-то идеи, наш адрес zheniasenno@gmail.com! Сделаем проект Лучше вместе!");
 }
 //---------------------------------------------------------------------------
 
@@ -284,8 +288,8 @@ void __fastcall TForm3::Stn21Click(TObject *Sender)
 
 void __fastcall TForm3::weather(void)
 {
-    int outf;
-    AnsiString st,strcopy;
+    int outf,j=0;
+	AnsiString st,strcopy;
 	if (FileExists("meteo.txt")) {
 		f = FileOpen("meteo.txt",fmOpenWrite);
 	}
@@ -301,17 +305,19 @@ void __fastcall TForm3::weather(void)
 		}
 		else
 			outf = FileCreate("out.txt");
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 14; i++,j++) {
 			st = st.SubString(st.Pos("forecast")+34,st.Length());
+			weather_s[j] = st.SubString(0,st.Pos('"')-1);
 			strcopy += st.SubString(0,st.Pos('"')-1);
 			strcopy +="\n";
 		}
 		for	(int i = 0; i<7 ;i++){
 			st = st.SubString(st.Pos("forecast")+8,st.Length());
 		}
-		for(int i =0;i<7;i++){
+		for(int i =0;i<7;i++,j++){
 			st = st.SubString(st.Pos("forecast")+49,st.Length());
-            strcopy += st.SubString(0,st.Pos('"')-1);
+			weather_s[j] = st.SubString(0,st.Pos('"')-1);
+			strcopy += st.SubString(0,st.Pos('"')-1);
 			strcopy +="\n";
 		}
 
@@ -319,22 +325,22 @@ void __fastcall TForm3::weather(void)
 			st = st.SubString(st.Pos("forecast")+8,st.Length());
 		}
 
-        		for (int i = 0;i< 7; i++) {
+		for (int i = 0;i< 7; i++,j++) {
 			st = st.SubString(st.Pos("forecast")+34,st.Length());
+			weather_s[j] = st.SubString(0,st.Pos('"')-1);
 			strcopy += st.SubString(0,st.Pos('"')-1);
 			strcopy +="\n";
 		}
-
-	   	Memo1->Text:=strcopy;
 
 		FileSeek(outf,0,0);
-       // FileClear(outf);
+	   // FileClear(outf);
 		FileWrite(outf,strcopy.c_str(),strcopy.Length());
-        FileClose(outf);
+		FileClose(outf);
 	}
 
 }
 //---------------------------------------------------------------------------
+
 
 
 

@@ -9,6 +9,12 @@
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Menus.hpp>
+#include <IdBaseComponent.hpp>
+#include <IdComponent.hpp>
+#include <IdHTTP.hpp>
+#include <IdTCPClient.hpp>
+#include <IdTCPConnection.hpp>
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -28,6 +34,7 @@ __published:	// IDE-managed Components
 	TMenuItem *N11;
 	TMenuItem *Stn11;
 	TMenuItem *Stn21;
+	TIdHTTP *IdHTTP1;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall N11Click(TObject *Sender);
 	void __fastcall FormMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
@@ -46,6 +53,7 @@ public:		// User declarations
 	void __fastcall DrawClock(void);
 	void __fastcall NightMode(void);
 	void __fastcall StandartMode(void);
+	void __fastcall weather(void);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;
