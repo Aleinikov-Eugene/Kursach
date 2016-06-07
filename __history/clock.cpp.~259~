@@ -16,23 +16,22 @@
 TForm3 *Form3;
 
 #define R 75
-int R1 = 75;
+#define INDENT 30
+int R1 = R;
 int x0, y0;
 int hour, minute, second;
 int r, str;
-AnsiString weather_s[28];
 int mode = 0;
 bool check_mode = false;
-int f;
 
 // ---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	TDateTime t;
 
-	ClientHeight = (R1 + 30) * 2;
-	ClientWidth = (R1 + 30) * 2;
-	x0 = R1 + 30;
-	y0 = R1 + 30;
+	ClientHeight = (R1 + INDENT) * 2;
+	ClientWidth = (R1 + INDENT) * 2;
+	x0 = R1 + INDENT;
+	y0 = R1 + INDENT;
 
 	t = Now();
 
@@ -97,7 +96,7 @@ void __fastcall TForm3::FormPaint() {
 		x = x0 + R1 * cos(angle * TORAD);
 		y = x0 - R1 * sin(angle * TORAD); //
 		Form3->Canvas->MoveTo(x, y);
-		if ((angle % 30) == 0) {
+		if ((angle % INDENT) == 0) {
 			if (str != 0) // Canvas->Ellipse(x-1,y-1,x+1,y+1);
 					Canvas->Rectangle(x - 3, y - 3, x + 3, y + 3);
 			else
@@ -197,10 +196,10 @@ void __fastcall TForm3::Timer1Timer(TObject *Sender) {
 	DrawClock();
 	FormPaint();
 	R1 = Form2->TrackBar1->Position;
-	ClientHeight = (R1 + 30) * 2;
-	ClientWidth = (R1 + 30) * 2;
-	x0 = R1 + 30;
-	y0 = R1 + 30;
+	ClientHeight = (R1 + INDENT) * 2;
+	ClientWidth = (R1 + INDENT) * 2;
+	x0 = R1 + INDENT;
+	y0 = R1 + INDENT;
 
 }
 // ---------------------------------------------------------------------------
@@ -242,15 +241,9 @@ void __fastcall TForm3::N9Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm3::N3Click(TObject *Sender) {
-	AnsiString s;
-	weather();
-    Form4->weather();
+
+	Form4->weather();
 	Form4->Show();
-	s = "Температура : Мин " + weather_s[0] + " Мах " + weather_s[7] +
-		"\nПиктограмма:" + weather_s[14] + "\nСостояние атмосферы: " +
-		weather_s[21];
-	ShowMessage(s);
-	// ShowMessage("Функция в разработке! Если у вас есть какие-то идеи, наш адрес zheniasenno@gmail.com! Сделаем проект Лучше вместе!");
 }
 // ---------------------------------------------------------------------------
 
@@ -261,62 +254,6 @@ void __fastcall TForm3::Stn11Click(TObject *Sender) {
 
 void __fastcall TForm3::Stn21Click(TObject *Sender) {
 	str = 1;
-}
-// ---------------------------------------------------------------------------
-
-void __fastcall TForm3::weather(void) {
-	int outf, j = 0;
-	AnsiString st, strcopy;
-	if (FileExists("meteo.txt")) {
-		f = FileOpen("meteo.txt", fmOpenWrite);
-	}
-	else
-		f = FileCreate("meteo.txt");
-	if (f != -1) {
-		st = IdHTTP1->Get
-			("http://api.pogoda.com/index.php?api_lang=ru&localidad=13096&affiliate_id=as7tojk239lm"
-			);
-		FileSeek(f, 0, 0);
-		FileWrite(f, st.c_str(), st.Length());
-		FileClose(f);
-		if (FileExists("out.txt")) {
-			outf = FileOpen("out.txt", fmOpenWrite);
-		}
-		else
-			outf = FileCreate("out.txt");
-		for (int i = 0; i < 14; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 34, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-		for (int i = 0; i < 7; i++) {
-			st = st.SubString(st.Pos("forecast") + 8, st.Length());
-		}
-		for (int i = 0; i < 7; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 30, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-
-		for (int i = 0; i < 7; i++) {
-			st = st.SubString(st.Pos("forecast") + 8, st.Length());
-		}
-
-		for (int i = 0; i < 7; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 34, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-
-		FileSeek(outf, 0, 0);
-		// FileClear(outf);
-		FileWrite(outf, strcopy.c_str(), strcopy.Length());
-		FileClose(outf);
-	}
-
 }
 // ---------------------------------------------------------------------------
 
@@ -335,3 +272,6 @@ void __fastcall TForm3::N7Click(TObject *Sender) {
 	Form2->Show();
 }
 // ---------------------------------------------------------------------------
+
+
+

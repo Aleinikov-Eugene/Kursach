@@ -16,7 +16,8 @@
 TForm3 *Form3;
 
 #define R 75
-int R1 = 75;
+#define INDENT 30
+int R1 = R;
 int x0, y0;
 int hour, minute, second;
 int r, str;
@@ -27,14 +28,14 @@ bool check_mode = false;
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	TDateTime t;
 
-	ClientHeight = (R1 + 30) * 2;
-	ClientWidth = (R1 + 30) * 2;
-	x0 = R1 + 30;
-	y0 = R1 + 30;
+	ClientHeight = (R1 + INDENT) * 2;
+	ClientWidth = (R1 + INDENT) * 2;
+	x0 = R1 + INDENT;
+	y0 = R1 + INDENT;
 
 	t = Now();
 
-	hour = 90 - HourOf(t) * 30 - (MinuteOf(Today()) / 12) * 6;
+	hour = 90 - HourOf(t) * INDENT - (MinuteOf(Today()) / 12) * 6;
 	minute = 90 - MinuteOf(t) * 6;
 	second = 90 - SecondOf(Today()) * 6;
 	Timer1->Interval = 1000;
@@ -95,7 +96,7 @@ void __fastcall TForm3::FormPaint() {
 		x = x0 + R1 * cos(angle * TORAD);
 		y = x0 - R1 * sin(angle * TORAD); //
 		Form3->Canvas->MoveTo(x, y);
-		if ((angle % 30) == 0) {
+		if ((angle % INDENT) == 0) {
 			if (str != 0) // Canvas->Ellipse(x-1,y-1,x+1,y+1);
 					Canvas->Rectangle(x - 3, y - 3, x + 3, y + 3);
 			else
@@ -195,10 +196,10 @@ void __fastcall TForm3::Timer1Timer(TObject *Sender) {
 	DrawClock();
 	FormPaint();
 	R1 = Form2->TrackBar1->Position;
-	ClientHeight = (R1 + 30) * 2;
-	ClientWidth = (R1 + 30) * 2;
-	x0 = R1 + 30;
-	y0 = R1 + 30;
+	ClientHeight = (R1 + INDENT) * 2;
+	ClientWidth = (R1 + INDENT) * 2;
+	x0 = R1 + INDENT;
+	y0 = R1 + INDENT;
 
 }
 // ---------------------------------------------------------------------------

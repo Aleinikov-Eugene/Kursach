@@ -16,6 +16,8 @@ object Form4: TForm4
   OldCreateOrder = False
   ParentBiDiMode = False
   Position = poMainFormCenter
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage

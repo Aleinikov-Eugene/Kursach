@@ -10,9 +10,11 @@
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
+#define LENGTHMASS 28
 TForm4 *Form4;
 int f;
-AnsiString weather_s[28];
+AnsiString weather_s[LENGTHMASS];
 
 // ---------------------------------------------------------------------------
 __fastcall TForm4::TForm4(TComponent* Owner) : TForm(Owner) {

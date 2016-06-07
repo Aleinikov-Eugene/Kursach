@@ -20,10 +20,8 @@ int R1 = 75;
 int x0, y0;
 int hour, minute, second;
 int r, str;
-AnsiString weather_s[28];
 int mode = 0;
 bool check_mode = false;
-int f;
 
 // ---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
@@ -242,15 +240,9 @@ void __fastcall TForm3::N9Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm3::N3Click(TObject *Sender) {
-	AnsiString s;
-	weather();
-    Form4->weather();
+
+	Form4->weather();
 	Form4->Show();
-	s = "Температура : Мин " + weather_s[0] + " Мах " + weather_s[7] +
-		"\nПиктограмма:" + weather_s[14] + "\nСостояние атмосферы: " +
-		weather_s[21];
-	ShowMessage(s);
-	// ShowMessage("Функция в разработке! Если у вас есть какие-то идеи, наш адрес zheniasenno@gmail.com! Сделаем проект Лучше вместе!");
 }
 // ---------------------------------------------------------------------------
 
@@ -261,62 +253,6 @@ void __fastcall TForm3::Stn11Click(TObject *Sender) {
 
 void __fastcall TForm3::Stn21Click(TObject *Sender) {
 	str = 1;
-}
-// ---------------------------------------------------------------------------
-
-void __fastcall TForm3::weather(void) {
-	int outf, j = 0;
-	AnsiString st, strcopy;
-	if (FileExists("meteo.txt")) {
-		f = FileOpen("meteo.txt", fmOpenWrite);
-	}
-	else
-		f = FileCreate("meteo.txt");
-	if (f != -1) {
-		st = IdHTTP1->Get
-			("http://api.pogoda.com/index.php?api_lang=ru&localidad=13096&affiliate_id=as7tojk239lm"
-			);
-		FileSeek(f, 0, 0);
-		FileWrite(f, st.c_str(), st.Length());
-		FileClose(f);
-		if (FileExists("out.txt")) {
-			outf = FileOpen("out.txt", fmOpenWrite);
-		}
-		else
-			outf = FileCreate("out.txt");
-		for (int i = 0; i < 14; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 34, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-		for (int i = 0; i < 7; i++) {
-			st = st.SubString(st.Pos("forecast") + 8, st.Length());
-		}
-		for (int i = 0; i < 7; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 25, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-
-		for (int i = 0; i < 7; i++) {
-			st = st.SubString(st.Pos("forecast") + 8, st.Length());
-		}
-
-		for (int i = 0; i < 7; i++, j++) {
-			st = st.SubString(st.Pos("forecast") + 34, st.Length());
-			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
-			strcopy += st.SubString(0, st.Pos('"') - 1);
-			strcopy += "\n";
-		}
-
-		FileSeek(outf, 0, 0);
-		// FileClear(outf);
-		FileWrite(outf, strcopy.c_str(), strcopy.Length());
-		FileClose(outf);
-	}
-
 }
 // ---------------------------------------------------------------------------
 
@@ -335,3 +271,6 @@ void __fastcall TForm3::N7Click(TObject *Sender) {
 	Form2->Show();
 }
 // ---------------------------------------------------------------------------
+
+
+
