@@ -16,9 +16,6 @@ Coordinates=201,78,55,58
 [Label1]
 Coordinates=10,78,53,58
 
-[UpDown2]
-Coordinates=347,78,71,36
-
 [Label2]
 Coordinates=10,10,53,58
 
@@ -31,13 +28,10 @@ Coordinates=73,10,59,58
 [Label4]
 Coordinates=207,10,53,58
 
-[UpDown1]
-Coordinates=266,78,71,36
-
 [Label3]
 Coordinates=138,78,53,58
 
 []
-Coordinates=10,146,93,36
+Coordinates=266,78,71,36
 Visible=True
 

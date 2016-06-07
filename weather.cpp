@@ -1,37 +1,95 @@
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
 
+#include <jpeg.hpp>
+#include <GIFImg.hpp>
+
 #include "weather.h"
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TForm2 *Form2;
+TForm4 *Form4;
 int f;
-//---------------------------------------------------------------------------
-__fastcall TForm2::TForm2(TComponent* Owner)
-	: TForm(Owner)
-{
+AnsiString weather_s[28];
 
+// ---------------------------------------------------------------------------
+__fastcall TForm4::TForm4(TComponent* Owner) : TForm(Owner) {
 }
-//---------------------------------------------------------------------------
-void __fastcall TForm2::FormCreate(TObject *Sender)
-{
 
-	AnsiString st;
+// ---------------------------------------------------------------------------
+void __fastcall TForm4::weather() {
+	int outf, j = 0;
+	int check = 40;
+	AnsiString st, strcopy;
 	if (FileExists("meteo.txt")) {
-	f = FileOpen("meteo.txt",fmOpenWrite);
+		f = FileOpen("meteo.txt", fmOpenWrite);
 	}
 	else
-	  f = FileCreate("meteo.txt");
+		f = FileCreate("meteo.txt");
 	if (f != -1) {
-	st = IdHTTP1->Get("http://api.pogoda.com/index.php?api_lang=ru&localidad=13096&affiliate_id=as7tojk239lm");
-	FileSeek(f,0,2);
-	FileWrite(f,st.c_str(),st.Length());
-	FileClose(f);
+		st = IdHTTP1->Get
+			("http://api.pogoda.com/index.php?api_lang=ru&localidad=13096&affiliate_id=as7tojk239lm"
+			);
+		FileSeek(f, 0, 0);
+		FileWrite(f, st.c_str(), st.Length());
+		FileClose(f);
+		if (FileExists("out.txt")) {
+			outf = FileOpen("out.txt", fmOpenWrite);
+		}
+		else
+			outf = FileCreate("out.txt");
+		for (int i = 0; i < 14; i++, j++) {
+			st = st.SubString(st.Pos("forecast") + 34, st.Length());
+			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
+			strcopy += st.SubString(0, st.Pos('"') - 1);
+			strcopy += "\n";
+		}
+		for (int i = 0; i < 7; i++) {
+			st = st.SubString(st.Pos("forecast") + 8, st.Length());
+		}
+		for (int i = 0; i < 7; i++, j++) {
+			st = st.SubString(st.Pos("forecast") + 31, st.Length());
+			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
+			strcopy += st.SubString(0, st.Pos('"') - 1);
+			strcopy += "\n";
+		}
+
+		for (int i = 0; i < 7; i++) {
+			st = st.SubString(st.Pos("forecast") + 8, st.Length());
+		}
+
+		for (int i = 0; i < 7; i++, j++) {
+			st = st.SubString(st.Pos("forecast") + 34, st.Length());
+			weather_s[j] = st.SubString(0, st.Pos('"') - 1);
+			strcopy += st.SubString(0, st.Pos('"') - 1);
+			strcopy += "\n";
+		}
+
+		FileSeek(outf, 0, 0);
+		// FileClear(outf);
+		FileWrite(outf, strcopy.c_str(), strcopy.Length());
+		FileClose(outf);
+	}
+	Image1->Picture->LoadFromFile(weather_s[14] + ".jpg");
+	Label1->Caption = "Температура: "+weather_s[0] + ".." +
+		weather_s[7];
+	st = weather_s[21];
+	for (int i = 1; i < st.Length(); i++) {
+		if (((char) st[i] == ' ') && (i > check)) {
+			st[i] = '\n';
+			check*=2;
+		}
+
 	}
 
+	Label2->Caption = "Состояние атмосферы:\n" + st+".";
+
+}
+void __fastcall TForm4::Button1Click(TObject *Sender)
+{
+ Form4->Close();
 }
 //---------------------------------------------------------------------------
 

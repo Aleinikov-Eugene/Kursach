@@ -1,0 +1,92 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = #1063#1072#1089#1099
+  ClientHeight = 299
+  ClientWidth = 258
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnMouseUp = FormMouseUp
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 24
+    Top = 32
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 80
+    Top = 32
+    object N1: TMenuItem
+      Caption = #1056#1077#1078#1080#1084#1099
+      object N5: TMenuItem
+        Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1099#1081
+        OnClick = N5Click
+        object Stn11: TMenuItem
+          Caption = 'Stn 1'
+          OnClick = Stn11Click
+        end
+        object Stn21: TMenuItem
+          Caption = 'Stn 2'
+          OnClick = Stn21Click
+        end
+      end
+      object N6: TMenuItem
+        Caption = #1053#1086#1095#1085#1086#1081
+        OnClick = N6Click
+      end
+      object N7: TMenuItem
+        Caption = #1045#1076#1080#1085#1072#1088#1086#1078#1082#1072
+      end
+      object N8: TMenuItem
+        Caption = #1045#1097#1077' '#1082#1072#1082#1086#1077' '#1090#1086' '#1076#1086#1087#1086#1083#1085#1077#1085#1080#1077
+      end
+    end
+    object N2: TMenuItem
+      Caption = #1041#1091#1076#1080#1083#1100#1085#1080#1082
+      object N9: TMenuItem
+        Caption = #1059#1089#1090#1072#1085#1086#1074#1080#1090#1100
+        OnClick = N9Click
+      end
+      object N10: TMenuItem
+        Caption = #1059#1076#1072#1083#1080#1090#1100
+      end
+    end
+    object N3: TMenuItem
+      Caption = #1055#1086#1075#1086#1076#1072
+      OnClick = N3Click
+    end
+    object N4: TMenuItem
+      Caption = '-'
+    end
+    object N11: TMenuItem
+      Caption = #1042#1099#1093#1086#1076
+      OnClick = N11Click
+    end
+  end
+  object IdHTTP1: TIdHTTP
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 128
+    Top = 32
+  end
+end

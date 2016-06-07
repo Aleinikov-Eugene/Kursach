@@ -10,6 +10,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.MPlayer.hpp>
+#include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -24,19 +25,42 @@ __published:	// IDE-managed Components
 	TLabel *Label4;
 	TLabel *Label5;
 	TLabel *Label6;
+	TTimer *Timer1;
+	TSpeedButton *SpeedButton1;
+	TSpeedButton *SpeedButton2;
+	TSpeedButton *SpeedButton3;
+	TSpeedButton *SpeedButton4;
+	TSpeedButton *SpeedButton5;
+	TSpeedButton *SpeedButton6;
+	TSpeedButton *SpeedButton7;
 	TUpDown *UpDown1;
 	TUpDown *UpDown2;
-	TTimer *Timer1;
+	TMediaPlayer *MediaPlayer1;
+	TButton *Button2;
+	TButton *Button3;
  //	TMediaPlayer *MediaPlayer1;
 	void __fastcall UpDown2Click(TObject *Sender, TUDBtnType Button);
 	void __fastcall UpDown1Click(TObject *Sender, TUDBtnType Button);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall SpeedButton1Click(TObject *Sender);
+	void __fastcall SpeedButton2Click(TObject *Sender);
+	void __fastcall SpeedButton3Click(TObject *Sender);
+	void __fastcall SpeedButton4Click(TObject *Sender);
+	void __fastcall SpeedButton5Click(TObject *Sender);
+	void __fastcall SpeedButton6Click(TObject *Sender);
+	void __fastcall SpeedButton7Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
 
 private:	// User declarations
 	TDateTime time;
+	int week[7];
 	int hour,minute, alarm_h,alarm_min;
+	void __fastcall weekclick(TSpeedButton *s, int x);
 public:		// User declarations
+	int checkbul;
 	__fastcall TForm1(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
